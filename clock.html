@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time with Fireworks</title>
+    <style>
+        @font-face {
+            font-family: 'Digital-7';
+            src: url('Digital-7.ttf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 100px; /* Increased font size */
+            font-family: 'Digital-7', sans-serif; /* Calculator font */
+        }
+
+        /* Fireworks container and styling */
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            display: none;
+        }
+
+        .explosion {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: red;
+            animation: explosion-animation 1.5s ease-in-out forwards;
+        }
+
+        @keyframes explosion-animation {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(10); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="time"></div>
+    <div class="fireworks" id="fireworks-container"></div>
+
+    <script>
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            const fireworksContainer = document.getElementById('fireworks-container');
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            timeElement.textContent = timeString;
+
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+
+            // If it's the end of an hour (when seconds and minutes are both zero), trigger fireworks
+            if (seconds === 0 && minutes === 0) {
+                startFireworks(fireworksContainer);
+            }
+        }
+
+        function startFireworks(container) {
+            container.style.display = 'block'; // Show the fireworks container
+
+            for (let i = 0; i < 50; i++) {
+                const explosion = document.createElement('div');
+                explosion.classList.add('explosion');
+
+                // Randomize position and delay for fireworks effect
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                explosion.style.left = `${x}px`;
+                explosion.style.top = `${y}px`;
+                container.appendChild(explosion);
+
+                // Remove the explosion after animation ends
+                setTimeout(() => explosion.remove(), 1500);
+            }
+
+            // Hide the fireworks container after the animation
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 2000);
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to display time immediately
+    </script>
+</body>
+</html>
