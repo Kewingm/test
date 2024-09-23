@@ -1,3 +1,6 @@
+https://www.mdpi.com/2076-3417/11/8/3403
+https://supplychainmanagement.utk.edu/articles/inventory-management-in-supply-chain-management/
+
 **What is Inventory Management?**
 
 Inventory management is the process of ordering, storing, and utilizing a company’s stock, which can include raw materials, work-in-progress items, or finished goods. Its main goal is to ensure that the right products are available at the right time and in the correct quantities, balancing customer demand with supply capabilities. An effective inventory management system helps prevent two critical issues: stockouts, where products run out, and overstock, where excess inventory is held. Both of these scenarios can negatively impact a company’s financial performance.
